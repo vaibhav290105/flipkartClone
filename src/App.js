@@ -3,15 +3,16 @@ import './App.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import React, { useState } from 'react';
+import SignUpPage from './signup';
+import Login from './login';
 // Header Component
-const Header = () => (
+const Header = ({onSignupButtonClick,onLoginButtonClick}) => (
   <header className="header">
     <h1>Flipkart</h1>
     <nav className="nav">
-      <a href="#">Login</a>
-      <a href="#">Sign-Up</a>
+      <a href="#" onClick={onLoginButtonClick}>Login</a>
+      <a href="#" onClick={onSignupButtonClick}>Sign-Up</a>
       <a href="#">Cart</a>
       <a href="#" id="home">Home</a>
     </nav>
@@ -52,6 +53,7 @@ const ProductCard = ({ item }) => {
   );
 };
 function MainComponent() {
+ 
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -154,8 +156,8 @@ function MainComponent() {
     
     
     <main id="main">
-     
       
+     
       <div className="search-container">
         
         <input
@@ -323,12 +325,40 @@ function MainComponent() {
 
     
 const App = () => {
+  const [isSignupOpen, setSignupOpen] = useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
+
+  const handleSignupButtonClick = () => {
+    setSignupOpen(true);
+  };
+  const handleLoginButtonClick = () => {
+    setLoginOpen(true);
+  };
+
+  const handleCloseSignup = () => {
+    setSignupOpen(false);
+  };
+  const handleCloseLogin = () => {
+    setLoginOpen(false);
+  };
+  
+  
   return (
     <div>
-      <Header />
-      <MainComponent />
+      {isSignupOpen ? (
+        <SignUpPage isOpen={handleSignupButtonClick} onClose={handleCloseSignup} />
+      ) : isLoginOpen ? (
+        <Login isOpen={handleLoginButtonClick} onClose={handleCloseLogin} />
+      ) : (
+        <Header 
+          onSignupButtonClick={handleSignupButtonClick} 
+          onLoginButtonClick={handleLoginButtonClick} 
+        />
+      )}
+      {!isSignupOpen && !isLoginOpen && <MainComponent />}
     </div>
   );
-};
+}
 
 export default App;
+
