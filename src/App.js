@@ -8,7 +8,7 @@ import SignUpPage from './signup';
 import Login from './login';
 import ProductList from './productList';
 
-// Header Component
+
 const Header = ({onSignupButtonClick,onLoginButtonClick}) => (
   <header className="header">
     <h1>Flipkart</h1>

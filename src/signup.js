@@ -1,6 +1,6 @@
 import React from 'react';
 import "./signup.css";
-
+//signup
 const SignUpPage = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
     return (
