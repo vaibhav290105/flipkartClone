@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import React, { useState } from 'react';
 import SignUpPage from './signup';
 import Login from './login';
+import ProductList from './productList';
+
 // Header Component
 const Header = ({onSignupButtonClick,onLoginButtonClick}) => (
   <header className="header">
@@ -109,7 +111,7 @@ function MainComponent() {
 
     
   ];
-
+  
   
 
   const searchData = () => {
@@ -325,6 +327,8 @@ function MainComponent() {
 
     
 const App = () => {
+  
+  
   const [isSignupOpen, setSignupOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
@@ -345,6 +349,7 @@ const App = () => {
   
   return (
     <div>
+      
       {isSignupOpen ? (
         <SignUpPage isOpen={handleSignupButtonClick} onClose={handleCloseSignup} />
       ) : isLoginOpen ? (
